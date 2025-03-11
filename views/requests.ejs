@@ -1,0 +1,50 @@
+<% if (user.role === 'director') { %>
+    <h2>Yêu cầu đang chờ xử lý</h2>
+    <% console.log('Requests in EJS:', requests); %>
+    <% if (Array.isArray(requests) && requests.length > 0) { %>
+      <ul>
+        <% requests.forEach(request => { %>
+          <% console.log('Request item:', request); %>
+          <li><%= request.title %>: <%= request.section_to_edit %>
+            <form method="POST" action="/edit_requests/approve-request/<%= request.id %>">
+              <select name="assigned_to">
+                <% managers.forEach(manager => { %>
+                  <option value="<%= manager.id %>"><%= manager.username %></option>
+                <% }) %>
+              </select>
+              <button type="submit">Phê duyệt</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>Không có yêu cầu nào.</p>
+    <% } %>
+  <% } else if (user.role === 'manager') { %>
+    <h2>Yêu cầu được phân công</h2>
+    <% if (Array.isArray(requests) && requests.length > 0) { %>
+      <ul>
+        <% requests.forEach(request => { %>
+          <li><%= request.title %>: <%= request.section_to_edit %>
+            <a href="/documents/view/<%= request.document_id %>" target="_blank">Xem tài liệu</a>
+            <form method="POST" action="/edit_requests/complete-request/<%= request.id %>">
+              <button type="submit">Hoàn thành</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>Không có yêu cầu nào.</p>
+    <% } %>
+  <% } else { %>
+    <h2>Yêu cầu của bạn</h2>
+    <% if (Array.isArray(requests) && requests.length > 0) { %>
+      <ul>
+        <% requests.forEach(request => { %>
+          <li><%= request.title %>: <%= request.section_to_edit %> - Trạng thái: <%= request.status %></li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>Bạn chưa có yêu cầu nào.</p>
+    <% } %>
+  <% } %>

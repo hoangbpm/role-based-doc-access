@@ -1,0 +1,14 @@
+<h1>Yêu cầu chỉnh sửa tài liệu <%= doc_id || 'Không xác định' %></h1>
+
+<% if (typeof error !== 'undefined' && error) { %>
+  <p style="color: red;"><%= error %></p>
+<% } %>
+
+<form method="POST" action="/edit_requests/request-edit">
+  <input type="hidden" name="doc_id" value="<%= doc_id || '' %>">
+  
+  <label>Phần cần chỉnh sửa:</label><br>
+  <textarea name="section_to_edit" required></textarea><br>
+  
+  <button type="submit">Gửi yêu cầu</button>
+</form>

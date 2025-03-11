@@ -1,0 +1,13 @@
+<h1>Danh sách tài liệu</h1>
+<ul>
+<% documents.forEach(doc => { %>
+  <li>
+    <a href="https://docs.google.com/document/d/<%= doc.file_id %>/edit" target="_blank"><%= doc.title %></a>
+    <a href="/edit_requests/request-edit/<%= doc.id %>">Yêu cầu chỉnh sửa</a>
+  </li>
+<% }) %>
+</ul>
+<a href="/documents/new">Thêm tài liệu mới</a>
+<a href="/edit_requests">Xem yêu cầu chỉnh sửa</a>
+<a href="/notifications">Xem thông báo</a>
+<a href="/auth/logout">Đăng xuất</a>
