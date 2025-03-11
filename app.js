@@ -7,6 +7,7 @@ const path = require('path');
 
 const app = express();
 const db = new sqlite3.Database('./database.db');
+app.use(express.static("public"));
 
 // Cấu hình Express
 app.set('view engine', 'ejs');

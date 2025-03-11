@@ -1,0 +1,13 @@
+1.Install 
+npm install express express-session sqlite3 bcryptjs ejs      
+npm list express express-session sqlite3 bcryptjs ejs 
+
+
+2.Open data base
++ sqlite3 database.db
+.tables    -- Xem danh sách bảng  
+.schema users  -- Xem cấu trúc bảng users  
+SELECT * FROM users;  -- Xem dữ liệu trong bảng users  
+
+3.Run app:
+ node app.js  
